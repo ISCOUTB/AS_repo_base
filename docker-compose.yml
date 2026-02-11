@@ -1,0 +1,33 @@
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - appnet
+  frontend-dev:
+    image: node:18-alpine
+    working_dir: /app
+    volumes:
+      - ./frontend:/app:cached
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+    command: sh -c "npm install --silent && npm run dev -- -H 0.0.0.0"
+    depends_on:
+      - backend
+    networks:
+      - appnet
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    networks:
+      - appnet
+networks:
+  appnet:
+    driver: bridge
