@@ -3,6 +3,10 @@ from fastapi.responses import JSONResponse
 
 app = FastAPI()
 
+@app.get("/api/hola")
+def read_root():
+    return {"message": "Hola mundo desde FastAPI!"}
+
 @app.get("/api/health")
 def health():
     return JSONResponse(content={"status": "ok"})

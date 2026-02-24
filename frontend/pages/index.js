@@ -26,7 +26,7 @@ export default function Home() {
       <main>
         <h1>Bienvenido al Frontend Next.js</h1>
         <p>Servido por Nginx y conectado al backend FastAPI en /api.</p>
-        <p><strong>HOLA Estado de la API:</strong> {apiStatus}</p>
+        <p><strong>Estado de la API:</strong> {apiStatus}</p>
       </main>
     </div>
   );
